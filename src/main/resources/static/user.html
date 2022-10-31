@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+<head>
+  <meta charset="UTF-8">
+  <title>User Page</title>
+</head>
+<body>
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">User Model</span>
+    </a>
+</header>
+<div>
+   <form th:action="@{/users/find}" method="get" th:object="${searchForm}">
+    <input type="number" name="id" th:value="${searchForm.id}"  placeholder="Enter Id" size="50" >
+    <button type="submit" >Inexact Search</button>
+  </form>
+<!--  <form th:action="@{/users/efind}" method="get" th:object="${searchForm}">
+    <input type="number" name="id" th:value="${searchForm.id}"  placeholder="Enter Id" size="50" >
+    <button type="submit" >Exact Search</button>
+  </form>-->
+</div>
+
+<div>
+    <span th:if="${#lists.isEmpty(users)}">There aren't any users!</span>
+    <span th:unless="${#lists.isEmpty(users)}">
+        <table class="table">
+            <tr>
+                <th> Name </th>
+                <th> Surname </th>
+                <th> Date of birth </th>
+                <th> Salary </th>
+                <th> Phones </th>
+                <th> Cars </th>
+                 <th> Drones </th>
+                <th> Computers </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+            <tr th:each="user: ${users}">
+              <td th:text="${user.name}"> </td>
+              <td th:text="${user.surname}"> </td>
+              <td th:text="${user.dateOfBirth}"> </td>
+              <td th:text="${user.salary}"> </td>
+              <td>
+                 <span th:if="${#lists.isEmpty(user.phones)}">No phones</span>
+                  <span th:unless="${#lists.isEmpty(user.phones)}">
+                      <a th:each="phone : ${user.phones}" th:text="${phone.brand} + ', '+ ${phone.model}+ ' '"></a>
+                  </span>
+              </td>
+              <td>
+                  <span th:if="${#lists.isEmpty(user.cars)}">No cars</span>
+                  <span th:unless="${#lists.isEmpty(user.cars)}">
+                      <a th:each="car : ${user.cars}" th:text="${car.brand} + ', '+ ${car.model} + ' '"> </a>
+                  </span>
+              </td>
+                 <td>
+                  <span th:if="${#lists.isEmpty(user.drones)}">No Drones</span>
+                  <span th:unless="${#lists.isEmpty(user.drones)}">
+                      <a th:each="drones : ${user.drones}" th:text="${drones.brand} + ', '+ ${drones.model} + ' '"> </a>
+                  </span>
+              </td>
+                <td>
+                  <span th:if="${#lists.isEmpty(user.computers)}">No Computers</span>
+                  <span th:unless="${#lists.isEmpty(user.computers)}">
+                      <a th:each="computer : ${user.computers}" th:text="${computer.brand} + ', '+ ${computer.model} + ' '"> </a>
+                  </span>
+              </td>
+              <td>
+                <form th:action="@{'/users/delete/'+${user.id}}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+              </td>
+                <td>
+                <form th:action="@{'/users/edit/'+${user.id}}" method="get">
+                    <button type="submit">Edit</button>
+                </form>
+              </td>
+            </tr>
+        </table>
+    </span>
+</div>
+<div>
+    <form th:action="@{'/users/add'}" method="get">
+        <button type="submit">Add user</button>
+    </form>
+</div>
+<div>
+    <form th:action="@{'/'}" method="get">
+        <button type="submit">Go to the main page</button>
+    </form>
+</div>
+
+
+
+
+
+
+<!--<div>
+  <span th:if="${#lists.isEmpty(users)}">There aren't any users!</span>
+  <span th:unless="${#lists.isEmpty(users)}">
+        <table class="table">
+            <tr>
+                <th> Name </th>
+                <th> Surname </th>
+                <th> Date of birth </th>
+                <th> Salary </th>
+                <th> Phones </th>
+                <th> Cars </th>
+                 <th> Drones </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+            <tr th:each="user: ${users}">
+              <td th:text="${user.name}"> </td>
+              <td th:text="${user.surname}"> </td>
+              <td th:text="${user.dateOfBirth}"> </td>
+              <td th:text="${user.salary}"> </td>
+              <td>
+                 <span th:if="${#lists.isEmpty(user.phones)}">No phones</span>
+                  <span th:unless="${#lists.isEmpty(user.phones)}">
+                      <a th:each="phone : ${user.phones}" th:text="${phone.brand} + ', '+ ${phone.model}+ ' '"></a>
+                  </span>
+              </td>
+              <td>
+                  <span th:if="${#lists.isEmpty(user.cars)}">No cars</span>
+                  <span th:unless="${#lists.isEmpty(user.cars)}">
+                      <a th:each="car : ${user.cars}" th:text="${car.brand} + ', '+ ${car.model} + ' '"> </a>
+                  </span>
+              </td>
+                 <td>
+                 <span th:if="${#lists.isEmpty(user.drones)}">No drones</span>
+                  <span th:unless="${#lists.isEmpty(user.drones)}">
+                      <a th:each="drones : ${user.drones}" th:text="${drones.brand} + ', '+ ${drones.model}+ ' '"></a>
+                  </span>
+              </td>
+              <td>
+                <form th:action="@{'/users/delete/'+${user.id}}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+              </td>
+                <td>
+                <form th:action="@{'/users/edit/'+${user.id}}" method="get">
+                    <button type="submit">Edit</button>
+                </form>
+              </td>
+            </tr>
+        </table>
+    </span>
+</div>
+<div>
+  <form th:action="@{'/users/add'}" method="get">
+    <button type="submit">Add user</button>
+  </form>
+</div>
+<div>
+    <form th:action="@{'/'}" method="get">
+        <button type="submit">Go to the main page</button>
+    </form>
+</div>-->
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Computer Page</title>
+</head>
+<body>
+<div>
+  <td th:text="${computer.brand}"></td>
+</div>
+<div>
+  <td th:text="${computer.model}"></td>
+</div>
+<div>
+  <td th:text="${computer.cost}"></td>
+</div>
+<div>
+  <td th:text="${computer.colour}"></td>
+</div>
+<div>
+  <td th:text="${computer.user.name}+ ' is owner'"></td>
+</div>
+<div>
+  <form th:action="@{'/drones'}" method="get">
+    <button type="submit">Go to the computers page</button>
+  </form>
+</div>
+</body>
+</html>
