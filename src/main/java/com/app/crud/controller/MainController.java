@@ -33,7 +33,17 @@ public class MainController {
     ComputerService computerService;
 
     @Autowired
+    AircraftService aircraftService;
+
+    @Autowired
+    SatelliteService satelliteService;
+
+    @Autowired
+    ManipulatorService manipulatorService;
+
+    @Autowired
     ClientRepository clientRepository;
+
 
 
 
@@ -401,5 +411,225 @@ public class MainController {
         }
         computerService.save(computer);
         return "redirect:/computer";
+    }
+
+
+    //Aircraft
+
+    @RequestMapping(value = "/aircraft", method = RequestMethod.GET)
+    public String aircraft(Model model) {
+        model.addAttribute("aircraft", aircraftService.findAllAircraft());
+        model.addAttribute("searchForm", new SearchForm());
+        return "aircraft";
+    }
+
+    @RequestMapping(value = "/aircraft/find", method = RequestMethod.GET)
+    public String getAircraftById(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+        Aircraft aircraft = aircraftService.findAircraftById(searchForm.getId());
+        if(aircraft==null){
+            return "redirect:/aircraft";
+        }
+        model.addAttribute("aircraft", aircraft );
+        return "searchAircraft";
+    }
+
+    @RequestMapping(value = "/aircraft/efind", method = RequestMethod.GET)
+    public String getAircraftByIdContains(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+        Aircraft aircraft = aircraftService.findAircraftByIdContains(searchForm.getId());
+        if(aircraft==null){
+            return "redirect:/aircraft";
+        }
+        model.addAttribute("aircraft", aircraft );
+        return "searchAircraft";
+    }
+
+    @RequestMapping(value = "/aircraft/add", method = RequestMethod.GET)
+    public String addAircraftPage(Model model) {
+        Aircraft aircraft = new Aircraft();
+        model.addAttribute("aircraft", aircraft);
+        model.addAttribute("users", userService.findAllUsers());
+        return "addAircraft";
+    }
+
+
+    @PostMapping(value = "/aircraft/add")
+    public String addAircraft(@Valid @ModelAttribute("aircraft") Aircraft aircraft, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("users", userService.findAllUsers());
+            return "addAircraft";
+        }
+        aircraftService.save(aircraft);
+        return "redirect:/aircraft";
+    }
+
+    @RequestMapping(value = "/aircraft/delete/{id}", method = RequestMethod.POST)
+    public String deleteAircraft(@PathVariable("id") int id) {
+        aircraftService.delete(id);
+        return "redirect:/aircraft";
+    }
+
+    @RequestMapping(value = "/aircraft/edit/{id}", method = RequestMethod.GET)
+    public String aircraftUserPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("aircraft", aircraftService.findAircraftById(id));
+        model.addAttribute("users", userService.findAllUsers());
+        return "editAircraft";
+    }
+
+    @PostMapping(value = "/aircraft/edit/{id}")
+    public String editUser(@PathVariable("id") int id, @Valid @ModelAttribute("aircraft") Aircraft aircraft,
+                           BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            aircraft.setId(id);
+            model.addAttribute("users", userService.findAllUsers());
+            return "editAircraft";
+        }
+        aircraftService.save(aircraft);
+        return "redirect:/aircraft";
+    }
+
+    //Satellite
+
+    @RequestMapping(value = "/satellite", method = RequestMethod.GET)
+    public String satellite(Model model) {
+        model.addAttribute("satellite", satelliteService.findAllSatellite());
+        model.addAttribute("searchForm", new SearchForm());
+        return "satellite";
+    }
+
+    @RequestMapping(value = "/satellite/find", method = RequestMethod.GET)
+    public String getSatelliteById(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+        Satellite satellite = satelliteService.findSatelliteById(searchForm.getId());
+        if(satellite==null){
+            return "redirect:/satellite";
+        }
+        model.addAttribute("satellite", satellite );
+        return "searchSatellite";
+    }
+
+    @RequestMapping(value = "/satellite/efind", method = RequestMethod.GET)
+    public String getSatelliteByIdContains(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+        Satellite satellite = satelliteService.findSatelliteByIdContains(searchForm.getId());
+        if(satellite==null){
+            return "redirect:/satellite";
+        }
+        model.addAttribute("satellite", satellite );
+        return "searchSatellite";
+    }
+
+    @RequestMapping(value = "/satellite/add", method = RequestMethod.GET)
+    public String addSatellitePage(Model model) {
+        Satellite satellite = new Satellite();
+        model.addAttribute("satellite", satellite);
+        model.addAttribute("users", userService.findAllUsers());
+        return "addSatellite";
+    }
+
+
+    @PostMapping(value = "/satellite/add")
+    public String addSatellite(@Valid @ModelAttribute("satellite") Satellite satellite, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("users", userService.findAllUsers());
+            return "addSatellite";
+        }
+        satelliteService.save(satellite);
+        return "redirect:/satellite";
+    }
+
+    @RequestMapping(value = "/satellite/delete/{id}", method = RequestMethod.POST)
+    public String deleteSatellite(@PathVariable("id") int id) {
+        satelliteService.delete(id);
+        return "redirect:/satellite";
+    }
+
+    @RequestMapping(value = "/satellite/edit/{id}", method = RequestMethod.GET)
+    public String satelliteUserPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("satellite", satelliteService.findSatelliteById(id));
+        model.addAttribute("users", userService.findAllUsers());
+        return "editSatellite";
+    }
+
+    @PostMapping(value = "/satellite/edit/{id}")
+    public String editUser(@PathVariable("id") int id, @Valid @ModelAttribute("satellite") Satellite satellite,
+                           BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            satellite.setId(id);
+            model.addAttribute("users", userService.findAllUsers());
+            return "editSatellite";
+        }
+        satelliteService.save(satellite);
+        return "redirect:/satellite";
+    }
+
+    //Manipulator
+
+    @RequestMapping(value = "/manipulator", method = RequestMethod.GET)
+    public String manipulator(Model model) {
+        model.addAttribute("manipulator", manipulatorService.findAllManipulator());
+        model.addAttribute("searchForm", new SearchForm());
+        return "manipulator";
+    }
+
+    @RequestMapping(value = "/manipulator/find", method = RequestMethod.GET)
+    public String getManipulatorById(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+        Manipulator manipulator = manipulatorService.findManipulatorById(searchForm.getId());
+        if(manipulator==null){
+            return "redirect:/manipulator";
+        }
+        model.addAttribute("manipulator", manipulator );
+        return "searchManipulator";
+    }
+
+    @RequestMapping(value = "/manipulator/efind", method = RequestMethod.GET)
+    public String getManipulatorByIdContains(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+        Manipulator manipulator = manipulatorService.findManipulatorByIdContains(searchForm.getId());
+        if(manipulator==null){
+            return "redirect:/manipulator";
+        }
+        model.addAttribute("manipulator", manipulator );
+        return "searchManipulator";
+    }
+
+    @RequestMapping(value = "/manipulator/add", method = RequestMethod.GET)
+    public String addManipulatorPage(Model model) {
+        Manipulator manipulator = new Manipulator();
+        model.addAttribute("manipulator", manipulator);
+        model.addAttribute("users", userService.findAllUsers());
+        return "addManipulator";
+    }
+
+
+    @PostMapping(value = "/manipulator/add")
+    public String addManipulator(@Valid @ModelAttribute("manipulator") Manipulator manipulator, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("users", userService.findAllUsers());
+            return "addManipulator";
+        }
+        manipulatorService.save(manipulator);
+        return "redirect:/manipulator";
+    }
+
+    @RequestMapping(value = "/manipulator/delete/{id}", method = RequestMethod.POST)
+    public String deleteManipulator(@PathVariable("id") int id) {
+        manipulatorService.delete(id);
+        return "redirect:/manipulator";
+    }
+
+    @RequestMapping(value = "/manipulator/edit/{id}", method = RequestMethod.GET)
+    public String manipulatorUserPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("manipulator", manipulatorService.findManipulatorById(id));
+        model.addAttribute("users", userService.findAllUsers());
+        return "editManipulator";
+    }
+
+    @PostMapping(value = "/manipulator/edit/{id}")
+    public String editUser(@PathVariable("id") int id, @Valid @ModelAttribute("manipulator") Manipulator manipulator,
+                           BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            manipulator.setId(id);
+            model.addAttribute("users", userService.findAllUsers());
+            return "editManipulator";
+        }
+        manipulatorService.save(manipulator);
+        return "redirect:/manipulator";
     }
 }

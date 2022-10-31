@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Satellite Page</title>
+</head>
+<body>
+<div>
+  <td th:text="${satellite.brand}"></td>
+</div>
+<div>
+  <td th:text="${satellite.model}"></td>
+</div>
+<div>
+  <td th:text="${satellite.cost}"></td>
+</div>
+<div>
+  <td th:text="${satellite.colour}"></td>
+</div>
+<div>
+  <td th:text="${satellite.user.name}+ ' is owner'"></td>
+</div>
+<div>
+  <form th:action="@{'/satellite'}" method="get">
+    <button type="submit">Go to the satellite page</button>
+  </form>
+</div>
+</body>
+</html>

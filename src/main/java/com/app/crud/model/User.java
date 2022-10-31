@@ -52,4 +52,16 @@ public class User {
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
     private List<Computer> computers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private List<Aircraft> aircraft = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private List<Satellite> satellite = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private List<Satellite> manipulator = new ArrayList<>();
 }

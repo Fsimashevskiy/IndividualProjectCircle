@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Aircraft Page</title>
+</head>
+<body>
+<div>
+  <td th:text="${aircraft.brand}"></td>
+</div>
+<div>
+  <td th:text="${aircraft.model}"></td>
+</div>
+<div>
+  <td th:text="${aircraft.cost}"></td>
+</div>
+<div>
+  <td th:text="${aircraft.colour}"></td>
+</div>
+<div>
+  <td th:text="${aircraft.user.name}+ ' is owner'"></td>
+</div>
+<div>
+  <form th:action="@{'/aircraft'}" method="get">
+    <button type="submit">Go to the aircraft page</button>
+  </form>
+</div>
+</body>
+</html>

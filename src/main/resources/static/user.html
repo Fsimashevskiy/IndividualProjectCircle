@@ -37,6 +37,8 @@
                 <th> Cars </th>
                  <th> Drones </th>
                 <th> Computers </th>
+                  <th> Aircrafts </th>
+                <th> Satellites </th>
                 <th> </th>
                 <th> </th>
             </tr>
@@ -67,6 +69,24 @@
                   <span th:if="${#lists.isEmpty(user.computers)}">No Computers</span>
                   <span th:unless="${#lists.isEmpty(user.computers)}">
                       <a th:each="computer : ${user.computers}" th:text="${computer.brand} + ', '+ ${computer.model} + ' '"> </a>
+                  </span>
+              </td>
+                <td>
+                  <span th:if="${#lists.isEmpty(user.aircraft)}">No Aircrafts</span>
+                  <span th:unless="${#lists.isEmpty(user.aircraft)}">
+                      <a th:each="aircraft : ${user.aircraft}" th:text="${aircraft.brand} + ', '+ ${aircraft.model} + ' '"> </a>
+                  </span>
+              </td>
+                <td>
+                  <span th:if="${#lists.isEmpty(user.satellite)}">No Satellites</span>
+                  <span th:unless="${#lists.isEmpty(user.satellite)}">
+                      <a th:each="satellite : ${user.satellite}" th:text="${satellite.brand} + ', '+ ${satellite.model} + ' '"> </a>
+                  </span>
+              </td>
+                <td>
+                  <span th:if="${#lists.isEmpty(user.manipulator)}">No Manipulator</span>
+                  <span th:unless="${#lists.isEmpty(user.satellite)}">
+                      <a th:each="manipulator : ${user.manipulator}" th:text="${manipulator.brand} + ', '+ ${manipulator.model} + ' '"> </a>
                   </span>
               </td>
               <td>

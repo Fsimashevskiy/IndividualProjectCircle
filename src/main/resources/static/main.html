@@ -11,7 +11,7 @@
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Choose the model:</span>
+        <span class="fs-4">Choose the category:</span>
     </a>
 
 
@@ -46,6 +46,21 @@
     <li class="nav-item"><a href="#" class="nav-link"><div>
         <form th:action="@{'/computer'}" method="get">
             <button>Computers</button>
+        </form>
+    </div></a></li>
+    <li class="nav-item"><a href="#" class="nav-link"><div>
+        <form th:action="@{'/aircraft'}" method="get">
+            <button>Aircrafts</button>
+        </form>
+    </div></a></li>
+    <li class="nav-item"><a href="#" class="nav-link"><div>
+        <form th:action="@{'/satellite'}" method="get">
+            <button>Satellite</button>
+        </form>
+    </div></a></li>
+    <li class="nav-item"><a href="#" class="nav-link"><div>
+        <form th:action="@{'/manipulator'}" method="get">
+            <button>Manipulator</button>
         </form>
     </div></a></li>
     <span th:if="${client.address == null}">

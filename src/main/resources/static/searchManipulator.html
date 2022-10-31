@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Manipulator Page</title>
+</head>
+<body>
+<div>
+  <td th:text="${manipulator.brand}"></td>
+</div>
+<div>
+  <td th:text="${manipulator.model}"></td>
+</div>
+<div>
+  <td th:text="${manipulator.cost}"></td>
+</div>
+<div>
+  <td th:text="${manipulator.colour}"></td>
+</div>
+<div>
+  <td th:text="${manipulator.user.name}+ ' is owner'"></td>
+</div>
+<div>
+  <form th:action="@{'/manipulator'}" method="get">
+    <button type="submit">Go to the manipulator page</button>
+  </form>
+</div>
+</body>
+</html>

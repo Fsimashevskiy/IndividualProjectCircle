@@ -17,4 +17,5 @@ public class SearchForm {
     public void setId(int id) {
         this.id = id;
     }
+
 }
