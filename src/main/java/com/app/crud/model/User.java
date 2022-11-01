@@ -63,5 +63,5 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
-    private List<Satellite> manipulator = new ArrayList<>();
+    private List<Manipulator> manipulator = new ArrayList<>();
 }

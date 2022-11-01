@@ -17,4 +17,5 @@ public interface ClientService {
 
     boolean makeClientAdmin(int id);
 
+
 }

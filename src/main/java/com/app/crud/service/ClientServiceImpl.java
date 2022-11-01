@@ -66,6 +66,8 @@ public class ClientServiceImpl implements ClientService, UserDetailsService {
         return false;
     }
 
+
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Client client = clientRepository.findClientByEmail(email);

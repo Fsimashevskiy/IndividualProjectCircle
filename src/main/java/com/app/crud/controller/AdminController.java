@@ -38,6 +38,10 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+
+
+
+
     //clients
 
     @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.POST)

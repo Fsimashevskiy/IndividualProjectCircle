@@ -42,6 +42,12 @@ public class MainController {
     ManipulatorService manipulatorService;
 
     @Autowired
+    ClientService clientService;
+
+    @Autowired
+    ArticleService articleService;
+
+    @Autowired
     ClientRepository clientRepository;
 
 
@@ -632,4 +638,80 @@ public class MainController {
         manipulatorService.save(manipulator);
         return "redirect:/manipulator";
     }
+
+    //Article
+
+    @RequestMapping(value = "/article", method = RequestMethod.GET)
+    public String article(Model model) {
+        model.addAttribute("article", articleService.findAllArticles());
+        model.addAttribute("searchForm", new SearchForm());
+        return "manipulator";
+    }
+
+    @RequestMapping(value = "/article/find", method = RequestMethod.GET)
+    public String getArticleById(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+        Article article = articleService.findArticleById(searchForm.getId());
+        if(article==null){
+            return "redirect:/article";
+        }
+        model.addAttribute("article", article );
+        return "searchArticle";
+    }
+
+    @RequestMapping(value = "/article/efind", method = RequestMethod.GET)
+    public String getArticleByIdContains(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+        Article article = articleService.findArticleByIdContains(searchForm.getId());
+        if(article==null){
+            return "redirect:/article";
+        }
+        model.addAttribute("article", article );
+        return "searchArticle";
+    }
+
+    @RequestMapping(value = "/article/add", method = RequestMethod.GET)
+    public String addArticlePage(Model model) {
+        Article article = new Article();
+        model.addAttribute("article", article);
+        model.addAttribute("users", userService.findAllUsers());
+        return "addArticle";
+    }
+
+
+    @PostMapping(value = "/article/add")
+    public String addArticle(@Valid @ModelAttribute("article") Article article, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("users", userService.findAllUsers());
+            return "addArticle";
+        }
+        articleService.save(article);
+        return "redirect:/article";
+    }
+
+    @RequestMapping(value = "/article/delete/{id}", method = RequestMethod.POST)
+    public String deleteArticle(@PathVariable("id") int id) {
+        articleService.delete(id);
+        return "redirect:/article";
+    }
+
+    @RequestMapping(value = "/article/edit/{id}", method = RequestMethod.GET)
+    public String articleUserPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("article", articleService.findArticleById(id));
+        model.addAttribute("users", userService.findAllUsers());
+        return "editArticle";
+    }
+
+    @PostMapping(value = "/article/edit/{id}")
+    public String editUser(@PathVariable("id") int id, @Valid @ModelAttribute("article") Article article,
+                           BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            article.setId(id);
+            model.addAttribute("users", userService.findAllUsers());
+            return "editArticle";
+        }
+        articleService.save(article);
+        return "redirect:/article";
+    }
+
+
+
 }

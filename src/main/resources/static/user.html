@@ -39,6 +39,7 @@
                 <th> Computers </th>
                   <th> Aircrafts </th>
                 <th> Satellites </th>
+                <th> Manipulators </th>
                 <th> </th>
                 <th> </th>
             </tr>
@@ -85,7 +86,7 @@
               </td>
                 <td>
                   <span th:if="${#lists.isEmpty(user.manipulator)}">No Manipulator</span>
-                  <span th:unless="${#lists.isEmpty(user.satellite)}">
+                  <span th:unless="${#lists.isEmpty(user.manipulator)}">
                       <a th:each="manipulator : ${user.manipulator}" th:text="${manipulator.brand} + ', '+ ${manipulator.model} + ' '"> </a>
                   </span>
               </td>

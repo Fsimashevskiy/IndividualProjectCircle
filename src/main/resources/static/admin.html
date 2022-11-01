@@ -40,15 +40,24 @@
                         <form th:action="@{'/admin/manage/'+${client.id}}" method="post">
                         <button type="submit">Make an admin</button>
                         </form>
+
                     </span>
                     <span th:case="'2'"><a>Client is an Admin</a></span>
-                   <form th:action="@{'/admin/delete/'+${client.id}}" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-                  <td>
+
+
+
+                <td>
                 <form th:action="@{'/admin/edit/'+${client.id}}" method="get">
+
                     <button type="submit">Edit</button>
+                     <form th:action="@{'/admin/delete/'+${client.id}}" method="post">
+                    <button type="submit">Delete</button>
+
                 </form>
+                </form>
+
+
+
               </td>
             </tr>
            <td>

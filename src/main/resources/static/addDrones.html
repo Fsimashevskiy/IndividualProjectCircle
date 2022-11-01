@@ -21,11 +21,19 @@
   <td th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></td>
   <div></div>
   <label for="colour">Colour</label>
-  <input class="form-control" type="text" th:field="*{colour}" id="colour" placeholder="Colour">
+  <!--<input class="form-control" type="text" th:field="*{colour}" id="colour" placeholder="Colour">-->
   <td th:if="${#fields.hasErrors('colour')}" th:errors="*{colour}"></td>
   <div></div>
   <select th:field="*{user}">
     <option th:each="user: ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+  </select>
+  <select name="colour">
+    <option value="Blue" class="form-control" type="text" th:field="*{colour}" id="colour" placeholder="colour">Blue</option>
+    <option value="Green" class="form-control" type="text" th:field="*{colour}" id="colour1" placeholder="colour" >Green</option>
+    <option value="Yellow" class="form-control" type="text" th:field="*{colour}" id="colour2" placeholder="colour">Yellow</option>
+    <option value="Red" class="form-control" type="text" th:field="*{colour}" id="colour3" placeholder="colour">Red</option>
+    <option value="Orange" class="form-control" type="text" th:field="*{colour}" id="colour4" placeholder="colour">Orange</option>
+    <option value="Black" class="form-control" type="text" th:field="*{colour}" id="colour5" placeholder="colour">Black</option>
   </select>
   <input type="submit" value="Add Drone">
 </form>
