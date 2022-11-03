@@ -37,31 +37,11 @@ public class User {
     @Min(value = 10, message = "Salary must be more than 10")
     private float salary;
 
-    @OneToMany(mappedBy = "user")
-    @ToString.Exclude
-    private List<Car> cars = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
     private List<Phone> phones = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    @ToString.Exclude
-    private List<Drones> drones = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    @ToString.Exclude
-    private List<Computer> computers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    @ToString.Exclude
-    private List<Aircraft> aircraft = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    @ToString.Exclude
-    private List<Satellite> satellite = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    @ToString.Exclude
-    private List<Manipulator> manipulator = new ArrayList<>();
 }

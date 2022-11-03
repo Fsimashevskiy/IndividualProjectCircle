@@ -19,7 +19,7 @@
 
     <div class="py-5 text-center">
 
-        <h2>Priborostroy</h2>
+        <h2>Circle</h2>
         <p class="lead">Welcome to the main page of the instrument-making enterprise management!</p>
     </div>
 </header>
@@ -39,11 +39,6 @@
 
 
 
-    <li class="nav-item"><a href="#" class="nav-link"><div>
-        <form th:action="@{'/cars'}" method="get">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Car</button>
-        </form>
-    </div></a></li>
 
     <li class="nav-item"><a href="#" class="nav-link"><div>
         <form th:action="@{'/phones'}" method="get">
@@ -52,30 +47,7 @@
     </div></a></li>
 
 
-    <li class="nav-item"><a href="#" class="nav-link"><div>
-        <form th:action="@{'/drones'}" method="get">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Drones</button>
-        </form>
-    </div></a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><div>
-        <form th:action="@{'/computer'}" method="get">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Computers</button>
-        </form>
-    </div></a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><div>
-        <form th:action="@{'/aircraft'}" method="get">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Aircrafts</button>
-        </form>
-    </div></a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><div>
-        <form th:action="@{'/satellite'}" method="get">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Satellite</button>
-        </form>
-    </div></a></li>
-    <li class="nav-item"><a href="#" class="nav-link"><div>
-        <form th:action="@{'/manipulator'}" method="get">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Manipulator</button>
-        </form>
+
     </div></a></li>
     <span th:if="${client.address == null}">
     <form th:action="@{'/registrationAddress/'+${client.id}}" method="get">
@@ -168,6 +140,17 @@
     button-new:hover {
         background-color: orange;
         color: white;
+    }
+
+    block {
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: #4CAF50;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
     }
 
 

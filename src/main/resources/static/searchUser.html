@@ -21,24 +21,6 @@
     <td th:each="phone : ${user.phones}" th:text="${phone.brand} + ', '+ ${phone.model} + '; '"></td>
   </div>
   <div>
-    <td th:each="car : ${user.cars}" th:text="${car.brand} + ', '+ ${car.model}+ '; '"> </td>
-  </div>
-  <div>
-    <td th:each="drones : ${user.drones}" th:text="${drones.brand} + ', '+ ${drones.model}+ '; '"> </td>
-  </div>
-  <div>
-    <td th:each="computers : ${user.computers}" th:text="${computers.brand} + ', '+ ${computers.model}+ '; '"> </td>
-  </div>
-  <div>
-    <td th:each="aircrafts : ${user.aircraft}" th:text="${aircrafts.brand} + ', '+ ${aircrafts.model}+ '; '"> </td>
-  </div>
-  <div>
-    <td th:each="satellite : ${user.satellite}" th:text="${satellite.brand} + ', '+ ${satellite.model}+ '; '"> </td>
-  </div>
-  <div>
-    <td th:each="manipulator : ${user.manipulator}" th:text="${manipulator.brand} + ', '+ ${manipulator.model}+ '; '"> </td>
-  </div>
-  <div>
     <form th:action="@{'/users'}" method="get">
       <button type="submit">Go to the users page</button>
     </form>
